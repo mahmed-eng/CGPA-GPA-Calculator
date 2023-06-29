@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GPA Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 40px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .subject {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: inline-block;
+      width: 120px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 50px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    #generateFields {
+      margin-top: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #generateFields:hover {
+      background-color: #45a049;
+    }
+
+    #calculateGPA {
+      margin-top: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #calculateGPA:hover {
+      background-color: #0056b3;
+    }
+
+    #results {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 30px;
+    }
+
+    .glitch {
+      display: inline-block;
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -1px 0 #00ff00;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -1px 0 #ff0000;
+      clip: rect(14px, 450px, 26px, 0);
+      animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% {
+        clip: rect(5px, 9999px, 69px, 0);
+        transform: skew(0.09deg);
+      }
+      5% {
+        clip: rect(24px, 9999px, 47px, 0);
+        transform: skew(0.67deg);
+      }
+      10% {
+        clip: rect(69px, 9999px, 10px, 0);
+        transform: skew(0.52deg);
+      }
+      15% {
+        clip: rect(1px, 9999px, 59px, 0);
+        transform: skew(0.43deg);
+      }
+      20% {
+        clip: rect(45px, 9999px, 30px, 0);
+        transform: skew(0.29deg);
+      }
+      25% {
+        clip: rect(56px, 9999px, 96px, 0);
+        transform: skew(0.03deg);
+      }
+      30% {
+        clip: rect(8px, 9999px, 100px, 0);
+        transform: skew(0.21deg);
+      }
+      35% {
+        clip: rect(66px, 9999px, 18px, 0);
+        transform: skew(0.67deg);
+      }
+      40% {
+        clip: rect(84px, 9999px, 15px, 0);
+        transform: skew(0.49deg);
+      }
+      45% {
+        clip: rect(16px, 9999px, 32px, 0);
+        transform: skew(0.52deg);
+      }
+      50% {
+        clip: rect(34px, 9999px, 81px, 0);
+        transform: skew(0.08deg);
+      }
+      55% {
+        clip: rect(18px, 9999px, 66px, 0);
+        transform: skew(0.97deg);
+      }
+      60% {
+        clip: rect(7px, 9999px, 79px, 0);
+        transform: skew(0.47deg);
+      }
+      65% {
+        clip: rect(75px, 9999px, 53px, 0);
+        transform: skew(0.25deg);
+      }
+      70% {
+        clip: rect(17px, 9999px, 14px, 0);
+        transform: skew(0.79deg);
+      }
+      75% {
+        clip: rect(94px, 9999px, 22px, 0);
+        transform: skew(0.64deg);
+      }
+      80% {
+        clip: rect(77px, 9999px, 51px, 0);
+        transform: skew(0.79deg);
+      }
+      85% {
+        clip: rect(92px, 9999px, 39px, 0);
+        transform: skew(0.64deg);
+      }
+      90% {
+        clip: rect(38px, 9999px, 95px, 0);
+        transform: skew(0.06deg);
+      }
+      95% {
+        clip: rect(38px, 9999px, 83px, 0);
+        transform: skew(0.81deg);
+      }
+      100% {
+        clip: rect(8px, 9999px, 8px, 0);
+        transform: skew(0.61deg);
+      }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% {
+        clip: rect(97px, 9999px, 84px, 0);
+        transform: skew(0.19deg);
+      }
+      5% {
+        clip: rect(22px, 9999px, 1px, 0);
+        transform: skew(0.09deg);
+      }
+      10% {
+        clip: rect(15px, 9999px, 63px, 0);
+        transform: skew(0.71deg);
+      }
+      15% {
+        clip: rect(56px, 9999px, 11px, 0);
+        transform: skew(0.16deg);
+      }
+      20% {
+        clip: rect(98px, 9999px, 45px, 0);
+        transform: skew(0.34deg);
+      }
+      25% {
+        clip: rect(75px, 9999px, 58px, 0);
+        transform: skew(0.96deg);
+      }
+      30% {
+        clip: rect(67px, 9999px, 86px, 0);
+        transform: skew(0.85deg);
+      }
+      35% {
+        clip: rect(66px, 9999px, 96px, 0);
+        transform: skew(0.94deg);
+      }
+      40% {
+        clip: rect(25px, 9999px, 14px, 0);
+        transform: skew(0.92deg);
+      }
+      45% {
+        clip: rect(18px, 9999px, 82px, 0);
+        transform: skew(0.74deg);
+      }
+      50% {
+        clip: rect(2px, 9999px, 67px, 0);
+        transform: skew(0.84deg);
+      }
+      55% {
+        clip: rect(91px, 9999px, 47px, 0);
+        transform: skew(0.72deg);
+      }
+      60% {
+        clip: rect(69px, 9999px, 94px, 0);
+        transform: skew(0.65deg);
+      }
+      65% {
+        clip: rect(78px, 9999px, 52px, 0);
+        transform: skew(0.16deg);
+      }
+      70% {
+        clip: rect(67px, 9999px, 41px, 0);
+        transform: skew(0.25deg);
+      }
+      75% {
+        clip: rect(1px, 9999px, 46px, 0);
+        transform: skew(0.17deg);
+      }
+      80% {
+        clip: rect(71px, 9999px, 36px, 0);
+        transform: skew(0.93deg);
+      }
+      85% {
+        clip: rect(32px, 9999px, 17px, 0);
+        transform: skew(0.72deg);
+      }
+      90% {
+        clip: rect(18px, 9999px, 69px, 0);
+        transform: skew(0.06deg);
+      }
+      95% {
+        clip: rect(5px, 9999px, 90px, 0);
+        transform: skew(0.21deg);
+      }
+      100% {
+        clip: rect(8px, 9999px, 38px, 0);
+        transform: skew(0.44deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>GPA Calculator</h1>
+
+  <div class="container">
+    <label>Number of Subjects:</label>
+    <input type="number" id="subjectCount" min="1" value="1">
+    <button id="generateFields">Generate Fields</button>
+
+    <div id="subjects"></div>
+
+    <button id="calculateGPA">Calculate GPA & CGPA</button>
+
+    <div id="results"></div>
+  </div>
+
+  <footer>
+    CopyRights &copy; 2023 Reserved <span class="glitch" data-text="Ahmed Hashmi">Ahmed Hashmi</span>
+  </footer>
+
+  <script>
+    document.getElementById("generateFields").addEventListener("click", function() {
+      var subjectCount = parseInt(document.getElementById("subjectCount").value);
+      var subjectsContainer = document.getElementById("subjects");
+      subjectsContainer.innerHTML = "";
+
+      for (var i = 1; i <= subjectCount; i++) {
+        var subjectDiv = document.createElement("div");
+        subjectDiv.className = "subject";
+
+        var subjectLabel = document.createElement("label");
+        subjectLabel.textContent = "Subject " + i + " Marks:";
+        subjectDiv.appendChild(subjectLabel);
+
+        var subjectInput = document.createElement("input");
+        subjectInput.type = "number";
+        subjectInput.className = "marks";
+        subjectInput.min = "0";
+        subjectDiv.appendChild(subjectInput);
+
+        var totalMarksLabel = document.createElement("label");
+        totalMarksLabel.textContent = "Total Marks:";
+        subjectDiv.appendChild(totalMarksLabel);
+
+        var totalMarksInput = document.createElement("input");
+        totalMarksInput.type = "number";
+        totalMarksInput.className = "totalMarks";
+        totalMarksInput.min = "1";
+        subjectDiv.appendChild(totalMarksInput);
+
+        subjectsContainer.appendChild(subjectDiv);
+      }
+    });
+
+    document.getElementById("calculateGPA").addEventListener("click", function() {
+      var marksInputs = document.getElementsByClassName("marks");
+      var totalMarksInputs = document.getElementsByClassName("totalMarks");
+      var totalSubjects = marksInputs.length;
+      var totalGPA = 0;
+      var totalCredits = 0;
+
+      for (var i = 0; i < totalSubjects; i++) {
+        var marks = parseFloat(marksInputs[i].value);
+        var totalMarks = parseInt(totalMarksInputs[i].value);
+        var credits = totalMarks / 100; // Assuming 100 marks is full credits for each subject
+        var gpa = (marks / totalMarks) * 4;
+
+        totalGPA += gpa * credits;
+        totalCredits += credits;
+      }
+
+      var gpaFormatted = (totalGPA / totalCredits).toFixed(2);
+      var cgpaFormatted = (totalGPA / totalSubjects).toFixed(2);
+
+      var resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "GPA: " + gpaFormatted + "<br>CGPA: " + cgpaFormatted;
+    });
+  </script>
+</body>
+</html>
